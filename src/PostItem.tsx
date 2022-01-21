@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 
 type PostItemPropsType = {
+    number: number
     post: {
         id: number,
         title: string,
@@ -8,11 +9,11 @@ type PostItemPropsType = {
     }
 }
 
-export const PostItem: FC<PostItemPropsType> = ({post: {id, title, body}}) => {
+export const PostItem: FC<PostItemPropsType> = ({post: {id, title, body}, number}) => {
     return (
         <div className="post">
             <div className="post_content">
-                <strong>{id}. {title}</strong>
+                <strong>{number}. {title}</strong>
                 <div>{body}</div>
             </div>
             <div className="post_btns">

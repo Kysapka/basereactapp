@@ -1,7 +1,8 @@
-import React, {FC} from 'react';
+import React, {FC, SyntheticEvent} from 'react';
 import classes from './MyButton.module.css';
 
 type MyButtonProps = {
+    onClick: (e: SyntheticEvent) => void
     children: string
 }
 
