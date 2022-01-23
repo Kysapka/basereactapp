@@ -3,3 +3,5 @@ export type postType = {
     title: string,
     body: string
 }
+
+export type SortType = 'title' | 'body'

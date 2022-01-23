@@ -1,7 +1,10 @@
 import React, {FC} from 'react';
+import {MyButton} from "./UI/button/MyButton";
+import {postType} from "./types";
 
 type PostItemPropsType = {
     number: number
+    remove: (post: postType) => void
     post: {
         id: number,
         title: string,
@@ -9,7 +12,8 @@ type PostItemPropsType = {
     }
 }
 
-export const PostItem: FC<PostItemPropsType> = ({post: {id, title, body}, number}) => {
+export const PostItem: FC<PostItemPropsType> = ({post, post: {id, title, body}, number, remove}) => {
+
     return (
         <div className="post">
             <div className="post_content">
@@ -17,7 +21,7 @@ export const PostItem: FC<PostItemPropsType> = ({post: {id, title, body}, number
                 <div>{body}</div>
             </div>
             <div className="post_btns">
-                <button>Удалить</button>
+                <MyButton onClick={() => remove(post)}>Удалить</MyButton>
             </div>
         </div>
     );
