@@ -4,4 +4,9 @@ export type postType = {
     body: string
 }
 
+export type filterType = {
+    sort: string
+    query: string
+}
+
 export type SortType = 'title' | 'body'
