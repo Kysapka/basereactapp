@@ -43,15 +43,7 @@ export const App = (): ReturnComponentType => {
       <PostForm create={createPost} />
       <hr style={{ margin: '15px 0' }} />
       <PostFilter filter={filter} setFilter={setFilter} />
-      {sortedAndSearchedPost.length ? (
-        <PostsList
-          posts={sortedAndSearchedPost}
-          remove={removePost}
-          title="Посты про JS"
-        />
-      ) : (
-        <h1 style={{ textAlign: 'center' }}>Посты не найдены</h1>
-      )}
+      <PostsList posts={sortedAndSearchedPost} remove={removePost} title="Посты про JS" />
     </div>
   );
 };
