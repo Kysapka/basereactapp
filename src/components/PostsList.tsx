@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
 
+import { PostItem } from 'components/PostItem';
 import { PostsListPropsType } from 'components/types';
-
-import { PostItem } from './PostItem';
 
 const POST_INDEX = 1;
 

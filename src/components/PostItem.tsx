@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
-import { postType } from './types';
-import { MyButton } from './UI/button/MyButton';
+import { postType } from 'components/types';
+import { MyButton } from 'components/UI';
 
 type PostItemPropsType = {
   number: number;

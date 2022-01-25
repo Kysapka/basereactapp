@@ -1,8 +1,7 @@
 import React, { FC, SyntheticEvent, useState } from 'react';
 
-import { postType } from './types';
-import { MyButton } from './UI/button/MyButton';
-import { MyInput } from './UI/input/MyInput';
+import { postType } from 'components/types';
+import { MyButton, MyInput } from 'components/UI';
 
 type PostFormPropsType = {
   create: (newPost: postType) => void;
