@@ -1,40 +1,42 @@
-import React, {FC, SyntheticEvent, useState} from 'react';
-import MyInput from "./UI/input/MyInput";
-import {MyButton} from "./UI/button/MyButton";
-import {postType} from "./types";
+import React, { FC, SyntheticEvent, useState } from 'react';
+
+import { postType } from './types';
+import { MyButton } from './UI/button/MyButton';
+import { MyInput } from './UI/input/MyInput';
 
 type PostFormPropsType = {
-    create: (newPost: postType) => void
-}
-
-const PostForm: FC<PostFormPropsType> = ({ create }) => {
-
-    const [post, setPost] = useState({title: '', body: ''})
-
-    const addNewPost = (e: SyntheticEvent) => {
-        e.preventDefault()
-        const newPost = {...post, id: +new Date()}
-        create(newPost)
-        setPost({title: '', body: ''})
-    }
-
-    return (
-        <form>
-            <MyInput
-                value={post.title}
-                onChange={(e: SyntheticEvent<HTMLInputElement>) => setPost({...post, title: e.currentTarget.value})}
-                type="text"
-                placeholder="Название поста"
-            />
-            <MyInput
-                value={post.body}
-                onChange={(e: SyntheticEvent<HTMLInputElement>) => setPost({...post, body: e.currentTarget.value})}
-                type="text"
-                placeholder="Описание поста"
-            />
-            <MyButton onClick={addNewPost}>Создать пост</MyButton>
-        </form>
-    );
+  create: (newPost: postType) => void;
 };
 
-export default PostForm;
+export const PostForm: FC<PostFormPropsType> = ({ create }) => {
+  const [post, setPost] = useState({ title: '', body: '' });
+
+  const addNewPost = (e: SyntheticEvent): void => {
+    e.preventDefault();
+    const newPost = { ...post, id: +new Date() };
+    create(newPost);
+    setPost({ title: '', body: '' });
+  };
+
+  return (
+    <form>
+      <MyInput
+        value={post.title}
+        onChange={(e: SyntheticEvent<HTMLInputElement>) =>
+          setPost({ ...post, title: e.currentTarget.value })
+        }
+        type="text"
+        placeholder="Название поста"
+      />
+      <MyInput
+        value={post.body}
+        onChange={(e: SyntheticEvent<HTMLInputElement>) =>
+          setPost({ ...post, body: e.currentTarget.value })
+        }
+        type="text"
+        placeholder="Описание поста"
+      />
+      <MyButton onClick={addNewPost}>Создать пост</MyButton>
+    </form>
+  );
+};

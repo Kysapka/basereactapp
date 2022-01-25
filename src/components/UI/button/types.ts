@@ -1,6 +1,6 @@
-import {SyntheticEvent} from "react";
+import { SyntheticEvent } from 'react';
 
 export type MyButtonProps = {
-    onClick: (e: SyntheticEvent) => void
-    children: string
-}
+  onClick: (e: SyntheticEvent) => void;
+  children: string;
+};

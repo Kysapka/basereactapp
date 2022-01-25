@@ -1,22 +1,16 @@
-import React, {FC} from 'react';
-import {PostItem} from "./PostItem";
-import {postType} from "./types";
+import React, { FC } from 'react';
 
-type PostsListPropsType = {
-    posts: postType[]
-    title: string
-    remove: (post:postType) => void
-}
+import { PostsListPropsType } from 'components/types';
 
-export const PostsList:FC<PostsListPropsType> = ({posts, title, remove}) => {
-    return (
-        <div>
-            <h1 style={{textAlign: "center"}}>
-                {title}
-            </h1>
-            {posts.map((post, index) =>
-                <PostItem key={post.id} number={index + 1} post={post} remove={remove}/>
-            )}
-        </div>
-    );
-};
+import { PostItem } from './PostItem';
+
+const POST_INDEX = 1;
+
+export const PostsList: FC<PostsListPropsType> = ({ posts, title, remove }) => (
+  <div>
+    <h1 style={{ textAlign: 'center' }}>{title}</h1>
+    {posts.map((post, index) => (
+      <PostItem key={post.id} number={index + POST_INDEX} post={post} remove={remove} />
+    ))}
+  </div>
+);

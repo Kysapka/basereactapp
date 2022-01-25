@@ -1,13 +1,13 @@
-import {SortType} from "../../types";
+import { SortType } from '../../types';
 
 export type MySelectPropsType = {
-    options: OptionType[]
-    defaultValue: string
-    value: string
-    onChange: (value: string) => void
-}
+  options: OptionType[];
+  defaultValue: string;
+  value: string;
+  onChange: (value: string) => void;
+};
 
 type OptionType = {
-    value: string
-    name: string
-}
+  value: string;
+  name: string;
+};
