@@ -4,6 +4,8 @@ import 'components/styles/App.css';
 
 import { PostFilter, PostForm, PostsList } from 'components';
 import { postType, ReturnComponentType, SortType } from 'components/types';
+import { MyButton } from 'components/UI';
+import { MyModal } from 'components/UI/modal/MyModal';
 
 export const App = (): ReturnComponentType => {
   const [posts, setPosts] = useState([
@@ -13,6 +15,7 @@ export const App = (): ReturnComponentType => {
   ]);
 
   const [filter, setFilter] = useState({ sort: '', query: '' });
+  const [modal, setModal] = useState(false);
 
   const sortedPosts = useMemo(() => {
     if (filter.sort) {
@@ -32,6 +35,7 @@ export const App = (): ReturnComponentType => {
 
   const createPost = (newPost: postType): void => {
     setPosts([...posts, newPost]);
+    setModal(false);
   };
 
   const removePost = (post: postType): void => {
@@ -40,7 +44,12 @@ export const App = (): ReturnComponentType => {
 
   return (
     <div className="App">
-      <PostForm create={createPost} />
+      <MyButton style={{ marginTop: '30px' }} onClick={() => setModal(true)}>
+        Создать пользователя
+      </MyButton>
+      <MyModal visible={modal} setVisible={setModal}>
+        <PostForm create={createPost} />
+      </MyModal>
       <hr style={{ margin: '15px 0' }} />
       <PostFilter filter={filter} setFilter={setFilter} />
       <PostsList posts={sortedAndSearchedPost} remove={removePost} title="Посты про JS" />
