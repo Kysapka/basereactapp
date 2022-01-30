@@ -4,7 +4,6 @@ import { postType } from 'components/types';
 import { MyButton } from 'components/UI';
 
 type PostItemPropsType = {
-  number: number;
   remove: (post: postType) => void;
   post: {
     id: number;
@@ -15,14 +14,13 @@ type PostItemPropsType = {
 
 export const PostItem: FC<PostItemPropsType> = ({
   post,
-  post: { title, body },
-  number,
+  post: { title, body, id },
   remove,
 }) => (
   <div className="post">
     <div className="post_content">
       <strong>
-        {number}. {title}
+        {id}. {title}
       </strong>
       <div>{body}</div>
     </div>

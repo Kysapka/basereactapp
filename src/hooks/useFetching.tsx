@@ -3,22 +3,23 @@ import { useState } from 'react';
 import { AxiosError } from 'axios';
 
 type ReturnUseFetchingType = [
-  fetching: () => Promise<void>,
+  fetching: (currentLimit: number, currentPage: number) => Promise<void>,
   isLoading: boolean,
   error: string,
 ];
 
-export const useFetching = (callback: Function): ReturnUseFetchingType => {
+export const useFetching = (callback): ReturnUseFetchingType => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const fetching = async (): Promise<void> => {
+  const fetching = async (...args): Promise<any> => {
     try {
       setIsLoading(true);
-      await callback();
+      await callback(...args);
     } catch (e: any) {
       const typedError = e as AxiosError;
-      setError(typedError.message);
+      const errorMessage = typedError.message;
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }
