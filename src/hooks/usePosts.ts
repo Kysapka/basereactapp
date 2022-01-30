@@ -11,7 +11,7 @@ export const useSortedPosts = (posts, sort): postType[] =>
     return posts;
   }, [sort, posts]);
 
-export const useSortedAndSearchedPost = (posts, sort, query): postType[] => {
+export const usePosts = (posts, sort, query): postType[] => {
   const sortedPosts = useSortedPosts(posts, sort);
   return useMemo(
     () =>
