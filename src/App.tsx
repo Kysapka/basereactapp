@@ -6,7 +6,9 @@ import { PostFilter, PostForm, PostsList } from 'components';
 import { PostService } from 'components/API/PostService';
 import { postType, ReturnComponentType } from 'components/types';
 import { MyButton } from 'components/UI';
+import { Loader } from 'components/UI/Loader/Loader';
 import { MyModal } from 'components/UI/modal/MyModal';
+import { useFetching } from 'hooks/useFetching';
 import { usePosts } from 'hooks/usePosts';
 
 export const App = (): ReturnComponentType => {
@@ -14,7 +16,10 @@ export const App = (): ReturnComponentType => {
 
   const [filter, setFilter] = useState({ sort: '', query: '' });
   const [modal, setModal] = useState(false);
-  const [isPostsLoading, setIsPostLoading] = useState(false);
+  const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
+    const postsData = await PostService.getAll();
+    setPosts(postsData);
+  });
 
   const sortedAndSearchedPost = usePosts(posts, filter.sort, filter.query);
 
@@ -25,13 +30,6 @@ export const App = (): ReturnComponentType => {
 
   const removePost = (post: postType): void => {
     setPosts(posts.filter(p => p.id !== post.id));
-  };
-
-  const fetchPosts = async (): Promise<any> => {
-    setIsPostLoading(true);
-    const postsData = await PostService.getAll();
-    setPosts(postsData);
-    setIsPostLoading(false);
   };
 
   useEffect(() => {
@@ -46,8 +44,11 @@ export const App = (): ReturnComponentType => {
       </MyModal>
       <hr style={{ margin: '15px 0' }} />
       <PostFilter filter={filter} setFilter={setFilter} />
+      {postError && <h1>Произошла ошибка ${postError}</h1>}
       {isPostsLoading ? (
-        <h1>Идет загрузка...</h1>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+          <Loader />
+        </div>
       ) : (
         <PostsList
           posts={sortedAndSearchedPost}
