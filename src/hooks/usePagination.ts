@@ -27,6 +27,7 @@ export const usePagination = (): any => {
 
 
   const pageCount = useMemo(() => getPageCount(totalPages, limit), [limit]);
+  
   const pagesArray = useMemo(() => getPagesArray(pageCount), [pageCount]);
 
   return { pagesArray, page, limit, setLimit, setTotalPages, setPage };
