@@ -13,6 +13,7 @@ export const usePagination = (): any => {
 
   const [totalPages, setTotalPages] = useState(DEFAULT_TOTAL_COUNT_VALUE);
 
+  
   const getPageCount = (currentTotalCount: number, currentLimit: number): number =>
     Math.ceil(currentTotalCount / currentLimit);
 
