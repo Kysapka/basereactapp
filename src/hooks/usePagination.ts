@@ -5,6 +5,7 @@ import { DEFAULT_LIMIT_POSTS, DEFAULT_START_PAGE } from 'components/API/PostServ
 const INCREMENT = 1;
 const DEFAULT_TOTAL_COUNT_VALUE = 0;
 
+
 export const usePagination = (): any => {
   const [page, setPage] = useState(DEFAULT_START_PAGE);
 
