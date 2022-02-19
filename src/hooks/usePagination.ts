@@ -5,15 +5,13 @@ import { DEFAULT_LIMIT_POSTS, DEFAULT_START_PAGE } from 'components/API/PostServ
 const INCREMENT = 1;
 const DEFAULT_TOTAL_COUNT_VALUE = 0;
 
-
 export const usePagination = (): any => {
   const [page, setPage] = useState(DEFAULT_START_PAGE);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [limit, setLimit] = useState(DEFAULT_LIMIT_POSTS);
 
   const [totalPages, setTotalPages] = useState(DEFAULT_TOTAL_COUNT_VALUE);
-  
+
   const getPageCount = (currentTotalCount: number, currentLimit: number): number =>
     Math.ceil(currentTotalCount / currentLimit);
 
@@ -26,9 +24,8 @@ export const usePagination = (): any => {
     return pagesArray;
   };
 
-
   const pageCount = useMemo(() => getPageCount(totalPages, limit), [limit]);
-  
+
   const pagesArray = useMemo(() => getPagesArray(pageCount), [pageCount]);
 
   return { pagesArray, page, limit, setLimit, setTotalPages, setPage };
